@@ -1,0 +1,25 @@
+#:schema https://json.schemastore.org/any.json
+
+root = "."          # The root directory of the project
+tmp_dir = "tmp"     # The temporary directory where air will store its temporary files
+
+[build]
+  bin = "main"      # The name of the binary file to be generated
+  cmd = "go build -o {{.Output}} {{.Input}}"  # The command to build the project
+  # Recommended standard fields (your original include/exclude/ignore work but these are preferred)
+  include_ext = ["go"]                   # Watch only .go files
+  exclude_dir = ["tmp", "client"]        # Exclude these directories from triggering rebuilds
+
+[color]
+  # Futuristic neon/cyberpunk-inspired color scheme
+  # Air prefixes log lines like: air (watcher), air (build), air (runner), air (main/app output)
+  main    = "magenta"    # App output and errors – bright magenta for neon highlight
+  watcher = "cyan"       # File watcher events – cool cyan glow
+  build   = "blue"       # Build messages and errors – electric blue
+  runner  = "green"      # Process start/stop – vibrant green for that matrix feel
+
+[log]
+  time = false           # Keep logs clean without timestamps (optional, common in examples)
+
+[misc]
+  clean_on_exit = true   # Automatically delete tmp_dir on exit (nice cleanup)
